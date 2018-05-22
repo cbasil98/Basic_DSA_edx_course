@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 
 using namespace std;
 struct point // Data type to store a point in cartesian plane
@@ -19,25 +19,36 @@ int main()
     cout<<"Input triangle\n";
     for(int i=0;i<3;i++)
             cin>>T1.T[i].x>>T1.T[i].y;
-    cout<<"Input the point";
+    cout<<"Input the point\n";
     cin>>a.x>>a.y;
     if(checkpoint(T1,a))
+    {
+
         cout<<"Yes";
+    }
+
     else
         cout<<"No";
     return 0;
 }
 bool checkpoint(triangle T1,point a)
 {
-    point v[3];
+    point v[3],v1[3],v2[3];
     for(int i=0;i<3;i++)
     {
         v[i].x=T1.T[(1+i)%3].x-T1.T[(i)%3].x;
         v[i].y=T1.T[(1+i)%3].y-T1.T[(i)%3].y;
+        v1[i].x=T1.T[(2+i)%3].x-T1.T[(i)%3].x;
+        v1[i].y=T1.T[(2+i)%3].y-T1.T[(i)%3].y;
+        v2[i].x=a.x-T1.T[(i)%3].x;
+        v2[i].y=a.y-T1.T[(i)%3].y;
+
+
+
 
     }
     for(int i=0;i<3;i++)
-        if(!cross(v[i],v[(i+2)/3],a))
+        if(!cross(v[i],v1[i],v2[i]))
            return false;
     return true;
 
@@ -48,7 +59,13 @@ bool cross(point b,point c,point a)
     int z1,z2;
     z1=b.x*c.y-c.x*b.y;
     z2=b.x*a.y-a.x*b.y;
-    if(z1*z2<0)
-        return true;
-    return false;
+    if(!z2)
+    {
+        cout<<"Yes";
+        exit(0);
+    }
+
+    if(z1*z2<=0)
+        return false;
+    return true;
 }
