@@ -16,9 +16,12 @@ int main()
 {
     triangle T1;
     point a;
+    char c;
     cout<<"Input triangle\n";
     for(int i=0;i<3;i++)
             cin>>T1.T[i].x>>T1.T[i].y;
+    do
+    {
     cout<<"Input the point\n";
     cin>>a.x>>a.y;
     if(checkpoint(T1,a))
@@ -29,6 +32,9 @@ int main()
 
     else
         cout<<"No";
+    cout<<"Continue";
+    cin>>c;
+    }while(c=='y');
     return 0;
 }
 bool checkpoint(triangle T1,point a)
@@ -62,7 +68,7 @@ bool cross(point b,point c,point a)
     if(!z2)
     {
         cout<<"Yes";
-        exit(0);
+        exit(1);
     }
 
     if(z1*z2<=0)
