@@ -68,7 +68,7 @@ bool cross(point b,point c,point a)
     if(!z2)
     {
         cout<<"Yes";
-        exit(1);
+        exit(0);
     }
 
     if(z1*z2<=0)
